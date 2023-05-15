@@ -1,76 +1,142 @@
 # EX-05-Feature-Generation
-## AIM
+
+## AIM:
+
 To read the given data and perform Feature Generation process and save the data to a file.
 
-## Explanation
+# Explanation:
+
 Feature Generation (also known as feature construction, feature extraction or feature engineering) is the process of transforming features into new features that better relate to the target.
 
-## ALGORITHM
+# ALGORITHM:
+
 ### STEP 1
+
 Read the given Data
 
 ### STEP 2
+
 Clean the Data Set using Data Cleaning Process
 
 ### STEP 3
+
 Apply Feature Generation techniques to all the feature of the data set
 
 ### STEP 4
+
 Save the data to the file
 
-## CODE
-Developed by:JAYAKRISHNAN L B L 
-Register Number:212222230052
-Data.csv
-```
-import pandas as pd import seaborn as sbn
+# CODE:
 
-df=pd.read_csv(”/content/data.csv") df.info()
-df.isnull().sum()
-from sklearn.preprocessing import LabelEncoder le = LabelEncoder()
-df['Ord 2'] = le.fit transform(df['Ord 2']) sbn.set(style =”darkgrid") sbn.countplot(df['Ord_2'])
-from sklearn.preprocessing import OneHotEncoder enc = OneHotEncoder()
-enc = enc.fit_transform(df[['City']]).toarray() encoded_colm = pd.DataFrame(enc)
-df = pd.concat([df, encoded_colm], axis=1) df = df.drop(['City'], axis=1)
-df.head(10)
-df = pd.get_dummies(df, prefix=['0rd_2'], columns=['0rd_2']) df.head(10)
-df = pd.get_dummies(df, prefix=['0rd_1'], columns=['0rd_1']) df.head(10)
-```
+## Data:
 
-
-Encoding.csv
-```
-import pandas  as  pd
-import seaborn as sbn data=pd.read_csv(”/content/Encoding Data.csv”) data.info()
-data.isnull().sum()
-from sklearn.preprocessing import LabelEncoder
-le = LabelEncoder() data['ord_2'] = le.fit_transform(data['ord_2']) sbn.set(style =”darkgrid")
-sbn.countplot(data['ord_2'])
-from sklearn.preprocessing import OneHotEncoder en = OneHotEncoder()
-en	en.fit_transform(data[['nom_0']]).toarray() encoded_colm = pd.DataFrame(en)
-data= pd.concat([data, encoded_colm], axis=1) data= data.drop(['nom_0'], axis=1) data.head(10)
-data	pd.get_dummies(df, prefix=['bin_2'], columns=['bin_2']) data.head(10)
+```python
+import pandas as pd
+df=pd.read_csv('Encoding Data.csv')
+df.head()
+df['ord_2'].unique()
+from sklearn.preprocessing import LabelEncoder,OrdinalEncoder
+climate = ['Cold','Warm','Hot']
+en= OrdinalEncoder(categories = [climate])
+df['ord_2']=en.fit_transform(df[["ord_2"]])
+df
+le = LabelEncoder()
+df['Nom_0'] = le.fit_transform(df[["nom_0"]])
+df
+!pip install --upgrade category_encoders
+from category_encoders import BinaryEncoder
+be = BinaryEncoder()
+data = be.fit_transform(df['bin_1'])
+df  = pd.concat([df,data],axis=1)
+df
+be = BinaryEncoder()
+data = be.fit_transform(df['bin_2'])
+df  = pd.concat([df,data],axis=1)
+df
 ```
 
+## Encoding data:
 
-Titanic.csv
+```python
+df1 = pd.read_csv("data.csv")
+df1.head()
+df1['Ord_1'].unique()
+climate = ['Cold','Warm','Hot','Very Hot']
+en= OrdinalEncoder(categories = [climate])
+df1['Ord_1']=en.fit_transform(df1[["Ord_1"]])
+df1
+df1['Ord_2'].unique()
+cl = ['High School','Diploma','Bachelors','Masters','PhD']
+en= OrdinalEncoder(categories = [cl])
+df1['Ord_2']=en.fit_transform(df1[["Ord_2"]])
+df1
+le = LabelEncoder()
+df1['City'] = le.fit_transform(df1[["City"]])
+df1
+from category_encoders import BinaryEncoder
+be = BinaryEncoder()
+dat = be.fit_transform(df1['bin_1'])
+df1  = pd.concat([df1,dat],axis=1)
+df1
+from category_encoders import BinaryEncoder
+be = BinaryEncoder()
+data1 = be.fit_transform(df1['bin_2'])
+df1  = pd.concat([df1,data1],axis=1)
+df1
+
 ```
-import pandas as pd import seaborn as sbn
-dt=pd.read_csv(”/content/titanic_dataset.csv”) dt.info()
-dt.isnull().sum()
-dt['Age']=dt['Age'] . fillna(dt ['Age'].mean())
-dt ['Cabin']=dt['Cabin']. fillna(dt['Cabin']. mode() [0])
-dt ['Embarked']=dt['Embarked'] . fillna(df ['Embarked'].mode( )[0]) dt.isnull().sum( )
-from sklearn.preprocessing import LabelEncoder
-lc = LabelEncoder()
-df['Sex'] = lc.fit_transform(df['Sex']) sbn.set(style =”darkgrid") sbn.countplot(df['Sex'])
-from sklearn.preprocessing import OneHotEncoder enc= OneHotEncoder()
-enc= enc.fit_transform(dt[['Name']]).toarray()
-encoded_colm = pd.DataFrame(enc)
-dt= pd.concat([dt, encoded_colm], axis=1) dt= dt.drop(['Name'], axis=1) dt.head(10)
-dt	pd.get_dummies(dt, prefix=['Ticket'] ,columns=['Ticket']) df.head(10)
-dt	pd.get_dummies(dt, prefix=['Embarked'] ,columns=['Embarked']) df.head(10)
+
+## Titanic Dataset:
+
+```python
+df2 = pd.read_csv("titanic_dataset.csv")
+df2.head()
+be = BinaryEncoder()
+data2 = be.fit_transform(df2['Sex'])
+df2  = pd.concat([df2,data2],axis=1)
+df2
+df2 = pd.get_dummies(df2, prefix=['Embarked'] ,columns=['Embarked'])
+df2
 ```
-## OUTPUT:
 
+# OUTPUT:
 
+# Encoding Data.csv
+
+![output](/a.png)
+
+![output](/b.png)
+
+![output](/c.png)
+
+![output](/d.png)
+
+![output](/e.png)
+
+# Data.csv
+
+![output](/f.png)
+
+![output](/g.png)
+
+![output](/h.png)
+
+![output](/i.png)
+
+![output](/j.png)
+
+![output](/k.png)
+
+![output](/l.png)
+
+# titanic_dataset.csv
+
+![output](/m.png)
+
+![output](/n.png)
+
+![output](/o.png)
+
+# Result:
+
+Thus the Feature Generation and Feature Scaling process is applied to the given data set.
