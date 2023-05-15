@@ -1,2 +1,76 @@
+# EX-05-Feature-Generation
+## AIM
+To read the given data and perform Feature Generation process and save the data to a file.
+
+## Explanation
+Feature Generation (also known as feature construction, feature extraction or feature engineering) is the process of transforming features into new features that better relate to the target.
+
+## ALGORITHM
+### STEP 1
+Read the given Data
+
+### STEP 2
+Clean the Data Set using Data Cleaning Process
+
+### STEP 3
+Apply Feature Generation techniques to all the feature of the data set
+
+### STEP 4
+Save the data to the file
+
+## CODE
+Developed by:JAYAKRISHNAN L B L 
+Register Number:212222230052
+Data.csv
+```
+import pandas as pd import seaborn as sbn
+
+df=pd.read_csv(”/content/data.csv") df.info()
+df.isnull().sum()
+from sklearn.preprocessing import LabelEncoder le = LabelEncoder()
+df['Ord 2'] = le.fit transform(df['Ord 2']) sbn.set(style =”darkgrid") sbn.countplot(df['Ord_2'])
+from sklearn.preprocessing import OneHotEncoder enc = OneHotEncoder()
+enc = enc.fit_transform(df[['City']]).toarray() encoded_colm = pd.DataFrame(enc)
+df = pd.concat([df, encoded_colm], axis=1) df = df.drop(['City'], axis=1)
+df.head(10)
+df = pd.get_dummies(df, prefix=['0rd_2'], columns=['0rd_2']) df.head(10)
+df = pd.get_dummies(df, prefix=['0rd_1'], columns=['0rd_1']) df.head(10)
+```
+
+
+Encoding.csv
+```
+import pandas  as  pd
+import seaborn as sbn data=pd.read_csv(”/content/Encoding Data.csv”) data.info()
+data.isnull().sum()
+from sklearn.preprocessing import LabelEncoder
+le = LabelEncoder() data['ord_2'] = le.fit_transform(data['ord_2']) sbn.set(style =”darkgrid")
+sbn.countplot(data['ord_2'])
+from sklearn.preprocessing import OneHotEncoder en = OneHotEncoder()
+en	en.fit_transform(data[['nom_0']]).toarray() encoded_colm = pd.DataFrame(en)
+data= pd.concat([data, encoded_colm], axis=1) data= data.drop(['nom_0'], axis=1) data.head(10)
+data	pd.get_dummies(df, prefix=['bin_2'], columns=['bin_2']) data.head(10)
+```
+
+
+Titanic.csv
+```
+import pandas as pd import seaborn as sbn
+dt=pd.read_csv(”/content/titanic_dataset.csv”) dt.info()
+dt.isnull().sum()
+dt['Age']=dt['Age'] . fillna(dt ['Age'].mean())
+dt ['Cabin']=dt['Cabin']. fillna(dt['Cabin']. mode() [0])
+dt ['Embarked']=dt['Embarked'] . fillna(df ['Embarked'].mode( )[0]) dt.isnull().sum( )
+from sklearn.preprocessing import LabelEncoder
+lc = LabelEncoder()
+df['Sex'] = lc.fit_transform(df['Sex']) sbn.set(style =”darkgrid") sbn.countplot(df['Sex'])
+from sklearn.preprocessing import OneHotEncoder enc= OneHotEncoder()
+enc= enc.fit_transform(dt[['Name']]).toarray()
+encoded_colm = pd.DataFrame(enc)
+dt= pd.concat([dt, encoded_colm], axis=1) dt= dt.drop(['Name'], axis=1) dt.head(10)
+dt	pd.get_dummies(dt, prefix=['Ticket'] ,columns=['Ticket']) df.head(10)
+dt	pd.get_dummies(dt, prefix=['Embarked'] ,columns=['Embarked']) df.head(10)
+```
+## OUTPUT:
 
 
